@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NucleoTec Engenharia — Lajes Cubetas para Obras de Alto Padrão</title>
+<meta name="description" content="Soluções estruturais inteligentes com lajes cubetas. Redução de custos, prazos e cargas estruturais sem abrir mão da qualidade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   CSS VARIABLES — Edit colors and fonts here globally
+   ============================================================ */
+:root {
+  --blue:        #0A1F44;
+  --blue-mid:    #122B5F;
+  --blue-light:  #1C3D6E;
+  --gray:        #5A6B7A;
+  --gray-light:  #8FA0AE;
+  --gray-line:   #D0D8DF;
+  --orange:      #F57C00;
+  --orange-light:#FF9A2E;
+  --bg:          #F5F7FA;
+  --bg-dark:     #EAEEF3;
+  --text:        #1A1A1A;
+  --text-muted:  #4A5568;
+  --white:       #FFFFFF;
+
+  --font-head: 'Montserrat', 'Barlow Condensed', sans-serif;
+  --font-body: 'Open Sans', 'Barlow', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --radius:  6px;
+  --shadow:  0 4px 32px rgba(10,31,68,.12);
+  --shadow-lg: 0 12px 60px rgba(10,31,68,.18);
+  --trans: .28s cubic-bezier(.4,0,.2,1);
+}
+select option {
+  color: #000;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-head);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section--dark { background: var(--blue); color: var(--white); }
+.section--mid { background: var(--blue-mid); color: var(--white); }
+.section--gray { background: var(--bg-dark); }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 16px;
+}
+.tag::before {
+  content: ''; width: 24px; height: 2px; background: var(--orange);
+}
+
+.headline {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.01em;
+}
+.headline--white { color: var(--white); }
+.headline--accent span { color: var(--orange); }
+.subline {
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+.subline--white { color: rgba(255,255,255,.72); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--font-head); font-weight: 600;
+  font-size: 1rem; letter-spacing: .04em; text-transform: uppercase;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.btn--orange {
+  background: #F57C00;
+  color: white;
+}
+.btn--orange:hover {
+  background: #d96c00;
+  transform: translateY(-2px);
+}
+.btn--outline {
+  border: 2px solid rgba(255,255,255,.4);
+  color: var(--white);
+}
+.btn--outline:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,.08);
+}
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10,31,68,.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: box-shadow var(--trans);
+}
+.header.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.25); }
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+}
+/* LOGO */
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 40px; height: 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+}
+.logo-icon span {
+  display: block; border-radius: 2px;
+  background: var(--orange);
+  transition: transform .4s ease;
+}
+.logo-icon span:nth-child(1) { transform: scaleY(1); }
+.logo-icon span:nth-child(2) { transform: scaleY(.6); background: rgba(245,124,0,.5); }
+.logo-icon span:nth-child(3) { transform: scaleY(.6); background: rgba(245,124,0,.5); }
+.logo-icon span:nth-child(4) { transform: scaleY(1); }
+.logo:hover .logo-icon span:nth-child(2),
+.logo:hover .logo-icon span:nth-child(3) { transform: scaleY(1); }
+.logo-text { display: flex; flex-direction: column; line-height: 1; }
+.logo-name {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 1.2rem; letter-spacing: .06em; color: var(--white);
+  text-transform: uppercase;
+}
+.logo-sub {
+  font-family: var(--font-mono); font-size: .6rem;
+  color: var(--orange); letter-spacing: .18em; text-transform: uppercase;
+}
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-family: var(--font-head); font-weight: 600;
+  font-size: .9rem; letter-spacing: .05em; text-transform: uppercase;
+  color: rgba(255,255,255,.72);
+  transition: color var(--trans);
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--orange);
+  transform: scaleX(0); transition: transform var(--trans);
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta { font-size: .82rem !important; padding: 10px 22px !important; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 28px; padding: 4px 0;
+}
+.hamburger span {
+  display: block; height: 2px; background: var(--white); border-radius: 2px;
+  transition: all var(--trans);
+}
+.nav-mobile {
+  display: none; flex-direction: column;
+  background: var(--blue-mid);
+  padding: 24px;
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.nav-mobile a {
+  font-family: var(--font-head); font-weight: 700;
+  font-size: 1.1rem; letter-spacing: .05em; text-transform: uppercase;
+  color: rgba(255,255,255,.8);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-mobile.open { display: flex; }
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  /* EDIT: Replace 'imagem-obra.jpg' with your real image path */
+  background: linear-gradient(rgba(10,31,68,0.85), rgba(10,31,68,0.85)),
+              url('imagem-obra.jpg') center/cover no-repeat;
+  color: white;
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding-top: 72px;
+}
+/* Grid background pattern */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at 60% 50%, black 30%, transparent 80%);
+}
+/* Accent geometry */
+.hero-geo {
+  position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+  width: 560px; height: 560px;
+  border: 1px solid rgba(245,124,0,.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-geo::before {
+  content: '';
+  position: absolute; inset: 40px;
+  border: 1px solid rgba(245,124,0,.08);
+  border-radius: 50%;
+}
+.hero-geo::after {
+  content: '';
+  position: absolute; inset: 100px;
+  border: 1px solid rgba(245,124,0,.06);
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px;
+  padding: 80px 0;
+}
+.hero-headline {
+  font-family: 'Montserrat', var(--font-head);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--white);
+  letter-spacing: -1px;
+}
+.hero-headline em {
+  font-style: normal; color: var(--orange);
+  position: relative; display: inline-block;
+}
+.hero-subline {
+  font-size: 1.1rem; color: rgba(255,255,255,.65);
+  margin-top: 20px; max-width: 520px; line-height: 1.75;
+}
+.hero-actions { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; }
+
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-top: 52px;
+}
+.stat-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  position: relative; overflow: hidden;
+}
+.stat-card::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--orange);
+}
+.stat-num {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 2.4rem; color: var(--white); line-height: 1;
+}
+.stat-num span { font-size: 1.4rem; color: var(--orange); }
+.stat-label { font-size: .82rem; color: rgba(255,255,255,.5); margin-top: 4px; letter-spacing: .04em; }
+
+/* Hero right: visual mockup */
+.hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-img-wrap {
+  width: 100%; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-mid) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.1);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hero-img-wrap:hover img {
+  transform: scale(1.05);
+}
+.img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+}
+.img-placeholder svg { opacity: .25; width: 56px; height: 56px; }
+.img-placeholder p { font-size: .78rem; color: rgba(255,255,255,.3); font-family: var(--font-mono); letter-spacing: .1em; }
+
+/* Floating badge */
+.hero-badge {
+  position: absolute; bottom: -16px; right: -16px;
+  background: var(--orange);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(245,124,0,.35);
+  color: var(--white);
+}
+.hero-badge strong { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; line-height: 1; display: block; }
+.hero-badge span { font-size: .72rem; letter-spacing: .08em; opacity: .85; }
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(255,255,255,.3); font-family: var(--font-mono); font-size: .65rem; letter-spacing: .12em;
+  animation: bob 2.4s ease-in-out infinite;
+}
+.scroll-hint svg { width: 20px; height: 20px; }
+@keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+/* ============================================================
+   PROBLEM SECTION
+   ============================================================ */
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.problem-intro { max-width: 480px; }
+.problem-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.problem-item {
+  background: var(--white);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  position: relative; overflow: hidden;
+  transition: all var(--trans);
+}
+.problem-item:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: var(--shadow); }
+.problem-item::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--orange); transform: scaleX(0); transform-origin: left;
+  transition: transform var(--trans);
+}
+.problem-item:hover::after { transform: scaleX(1); }
+.problem-icon {
+  width: 44px; height: 44px; border-radius: 6px;
+  background: rgba(245,124,0,.08);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.problem-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 1.8; }
+.problem-item h4 {
+  font-family: var(--font-head); font-weight: 700;
+  font-size: 1.05rem; color: var(--text); margin-bottom: 6px;
+}
+.problem-item p { font-size: .88rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ============================================================
+   SOLUTION SECTION
+   ============================================================ */
+.solution-section { background: var(--blue); color: var(--white); padding: 100px 0; }
+.solution-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+.solution-steps { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+.solution-step {
+  display: flex; gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  position: relative;
+}
+.solution-step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--font-mono); font-size: .7rem;
+  color: var(--orange); letter-spacing: .12em;
+  min-width: 36px; padding-top: 4px;
+}
+.step-content h4 {
+  font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
+  color: var(--white); margin-bottom: 4px;
+}
+.step-content p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+
+/* Cubeta Visual */
+.cubeta-visual {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: 40px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.cubeta-diagram {
+  aspect-ratio: 16/9;
+  background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(245,124,0,.06) 100%);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,.06);
+  position: relative; overflow: hidden;
+}
+/* CSS cubeta slab representation */
+.cubeta-cross {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: repeat(3,1fr);
+  gap: 6px; width: 85%; height: 70%;
+}
+.cubeta-cell {
+  border-radius: 3px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+
+  /* ADICIONE ISSO */
+  transition: all 0.3s ease;
+}
+.cubeta-cell {
+  border-radius: 3px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.cubeta-cell.beam {
+  background: rgba(245,124,0,.25);
+  border-color: rgba(245,124,0,.4);
+}
+.cubeta-cell.void {
+  background: rgba(10,31,68,.4);
+  border-color: rgba(255,255,255,.04);
+}
+.cubeta-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: .78rem; color: rgba(255,255,255,.55);
+  font-family: var(--font-mono);
+}
+.cubeta-diagram:hover .cubeta-cell {
+  transform: scale(1.05);
+}
+
+.cubeta-diagram:hover .cubeta-cell.void {
+  background: rgba(245,124,0,.35);
+  border-color: var(--orange);
+}
+
+.cubeta-diagram:hover .cubeta-cell.beam {
+  background: rgba(255,255,255,.15);
+}
+.cubeta-label::before { content: ''; width: 16px; height: 2px; background: var(--orange); }
+
+/* ============================================================
+   BENEFITS SECTION
+   ============================================================ */
+.benefits-section { padding: 100px 0; }
+.benefits-header { text-align: center; margin-bottom: 60px; }
+.benefits-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+}
+.benefit-card {
+  background: var(--white);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  transition: all var(--trans);
+  position: relative; overflow: hidden;
+}
+.benefit-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); border-color: rgba(245,124,0,.3); }
+.benefit-num {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 3rem; color: var(--orange); line-height: 1;
+  margin-bottom: 8px;
+}
+.benefit-card h4 {
+  font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
+  color: var(--text); margin-bottom: 8px;
+}
+.benefit-card p { font-size: .88rem; color: var(--text-muted); line-height: 1.65; }
+.benefit-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--orange), transparent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--trans);
+}
+.benefit-card:hover::before { transform: scaleX(1); }
+
+/* ============================================================
+   PROJECT TYPES
+   ============================================================ */
+.projects-section { background: var(--bg-dark); padding: 100px 0; }
+.projects-header { margin-bottom: 52px; }
+.projects-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.project-card {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+  border: 1px solid var(--gray-line);
+  transition: all var(--trans);
+}
+.project-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,.16); transform: translateY(-5px); }
+.project-img {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.project-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.project-img img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.project-card:hover img {
+  transform: scale(1.05);
+}
+.project-img-label {
+  font-family: var(--font-mono); font-size: .65rem;
+  color: rgba(255,255,255,.3); letter-spacing: .1em;
+  text-align: center;
+}
+.project-tag {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--orange); color: var(--white);
+  font-family: var(--font-mono); font-size: .6rem;
+  padding: 3px 8px; border-radius: 3px; letter-spacing: .08em;
+}
+.project-info { padding: 20px; }
+.project-info h4 {
+  font-family: var(--font-head); font-weight: 700;
+  font-size: 1rem; margin-bottom: 6px;
+}
+.project-info p { font-size: .82rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ============================================================
+   DIFFERENTIALS SECTION
+   ============================================================ */
+.diff-section { background: var(--blue-mid); color: var(--white); padding: 100px 0; }
+.diff-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-top: 52px; }
+.diff-item {
+  padding: 36px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  transition: all var(--trans);
+}
+.diff-item:hover { background: rgba(255,255,255,.07); border-color: rgba(245,124,0,.3); }
+.diff-icon {
+  width: 52px; height: 52px;
+  border: 1px solid rgba(245,124,0,.3);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.diff-icon svg { width: 26px; height: 26px; stroke: var(--orange); fill: none; stroke-width: 1.6; }
+.diff-item h4 {
+  font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+  margin-bottom: 10px;
+}
+.diff-item p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.65; }
+
+/* ============================================================
+   AUTHORITY / PROJECTS SHOWCASE
+   ============================================================ */
+.authority-section { padding: 100px 0; }
+.metrics-band {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--gray-line);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 72px;
+}
+.metric-block {
+  background: var(--white);
+  padding: 36px 28px; text-align: center;
+}
+.metric-val {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 3rem; color: var(--blue); line-height: 1;
+}
+.metric-val em { font-style: normal; color: var(--orange); font-size: 2rem; }
+.metric-lbl { font-size: .82rem; color: var(--text-muted); margin-top: 6px; letter-spacing: .04em; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 60px; }
+.gallery-item {
+  border-radius: var(--radius); overflow: hidden;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--gray) 100%);
+  position: relative;
+  cursor: pointer; transition: transform var(--trans);
+}
+.gallery-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-item .img-placeholder p { color: rgba(255,255,255,.2); }
+
+/* Testimonial */
+.testimonials { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.testimonial {
+  background: var(--bg-dark);
+  border: 1px solid var(--gray-line);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.testimonial-quote {
+  font-size: .95rem; line-height: 1.7; color: var(--text-muted);
+  font-style: italic; margin-bottom: 20px;
+}
+.testimonial-quote::before { content: '"'; color: var(--orange); font-size: 1.4rem; line-height: 0; vertical-align: -6px; margin-right: 2px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--blue-light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 1rem; color: var(--white); font-weight: 700;
+}
+.author-name { font-weight: 600; font-size: .9rem; }
+.author-role { font-size: .78rem; color: var(--text-muted); }
+
+/* ============================================================
+   MISSION / VISION / VALUES (EDITABLE BLOCKS)
+   ============================================================ */
+.mvv-section { background: var(--blue); color: var(--white); padding: 100px 0; }
+.mvv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 52px; }
+.mvv-block {
+  padding: 40px 32px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  position: relative;
+}
+.mvv-block-label {
+  font-family: var(--font-mono); font-size: .65rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 16px;
+}
+.mvv-block h3 {
+  font-family: var(--font-head); font-size: 1.6rem; font-weight: 800;
+  color: var(--white); margin-bottom: 16px;
+}
+.mvv-block p { font-size: .95rem; color: rgba(255,255,255,.65); line-height: 1.7; }
+.mvv-values ul { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.mvv-values li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .9rem; color: rgba(255,255,255,.7);
+}
+.mvv-values li::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+
+/* ============================================================
+   VIDEO SECTION
+   ============================================================ */
+.video-section { padding: 100px 0; background: var(--bg-dark); }
+.video-wrap {
+  max-width: 900px; margin: 52px auto 0;
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,.15);
+  background: var(--blue);
+  aspect-ratio: 16/9;
+  position: relative;
+  border: 1px solid rgba(0,0,0,.08);
+}
+/* Replace this div with an <iframe> when ready */
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px; cursor: pointer;
+  transition: background var(--trans);
+}
+.video-placeholder:hover { background: rgba(0,0,0,.1); }
+.play-btn {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(245,124,0,.5);
+  transition: transform var(--trans), box-shadow var(--trans);
+}
+.video-placeholder:hover .play-btn { transform: scale(1.08); box-shadow: 0 12px 48px rgba(245,124,0,.6); }
+.play-btn svg { width: 28px; height: 28px; fill: var(--white); margin-left: 4px; }
+.video-caption { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em; color: rgba(255,255,255,.4); }
+
+/* ============================================================
+   CTA SECTION
+   ============================================================ */
+.cta-section {
+  background: var(--orange);
+  padding: 80px 0;
+}
+.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+.cta-text h2 {
+  font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800; color: var(--white); line-height: 1.05;
+}
+.cta-text p { font-size: 1.05rem; color: rgba(255,255,255,.8); margin-top: 12px; max-width: 500px; }
+.btn--white { background: var(--white); color: var(--orange); }
+.btn--white:hover { background: rgba(255,255,255,.9); box-shadow: 0 6px 32px rgba(0,0,0,.15); transform: translateY(-2px); }
+.btn--white-outline { border: 2px solid rgba(255,255,255,.5); color: var(--white); }
+.btn--white-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+.contact-section { background: var(--blue); color: var(--white); padding: 100px 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 28px; margin-top: 32px; }
+.contact-item { display: flex; align-items: flex-start; gap: 16px; }
+.contact-ico {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border: 1px solid rgba(245,124,0,.3); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-ico svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 1.8; }
+.contact-item-label { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .15em; color: var(--orange); margin-bottom: 4px; }
+.contact-item-val { font-size: .95rem; color: rgba(255,255,255,.8); }
+
+/* Form */
+.contact-form { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: .78rem; color: rgba(255,255,255,.5); letter-spacing: .06em; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius); padding: 12px 16px;
+  font-family: var(--font-body); font-size: .95rem;
+  color: var(--white); transition: border-color var(--trans);
+  outline: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255,255,255,.25); }
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--orange); background: rgba(255,255,255,.08); }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-group select { appearance: none; }
+.form-submit { margin-top: 8px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #060F22;
+  color: rgba(255,255,255,.45);
+  padding: 52px 0 28px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-brand p { font-size: .88rem; line-height: 1.7; margin-top: 16px; max-width: 260px; }
+.footer-col h5 {
+  font-family: var(--font-head); font-size: .85rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.7); margin-bottom: 16px;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col li a {
+  font-size: .85rem; color: rgba(255,255,255,.4);
+  transition: color var(--trans);
+}
+.footer-col li a:hover { color: var(--orange); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding-top: 24px; display: flex; justify-content: space-between;
+  align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.footer-bottom p { font-size: .8rem; }
+.footer-bottom span { color: var(--orange); }
+
+/* ============================================================
+   FLOATING WHATSAPP BUTTON
+   ============================================================ */
+.whatsapp-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 32px rgba(37,211,102,.4);
+  transition: transform var(--trans), box-shadow var(--trans);
+  animation: pulse-wa 2.4s ease-in-out infinite;
+}
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 40px rgba(37,211,102,.55); animation: none; }
+.whatsapp-float svg { width: 28px; height: 28px; fill: var(--white); }
+@keyframes pulse-wa {
+  0%,100% { box-shadow: 0 6px 32px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 6px 48px rgba(37,211,102,.65); }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+[data-anim] {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+[data-anim].visible {
+  opacity: 1; transform: translateY(0);
+}
+[data-anim="left"] { transform: translateX(-28px); }
+[data-anim="left"].visible { transform: translateX(0); }
+[data-anim="right"] { transform: translateX(28px); }
+[data-anim="right"].visible { transform: translateX(0); }
+[data-delay="1"] { transition-delay: .1s; }
+[data-delay="2"] { transition-delay: .2s; }
+[data-delay="3"] { transition-delay: .3s; }
+[data-delay="4"] { transition-delay: .4s; }
+[data-delay="5"] { transition-delay: .5s; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero-headline { font-size: clamp(2.4rem, 7vw, 3.8rem); }
+  .hero-stats { max-width: 520px; }
+  .grid-2, .problem-grid, .solution-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .benefits-grid, .diff-grid, .mvv-grid, .testimonials { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr 1fr; }
+  .metrics-band { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .section { padding: 72px 0; }
+  .hero { padding-top: 72px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .benefits-grid, .diff-grid, .mvv-grid, .testimonials, .projects-grid { grid-template-columns: 1fr; }
+  .metrics-band { grid-template-columns: 1fr 1fr; }
+  .cta-inner { flex-direction: column; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .metrics-band { grid-template-columns: 1fr; }
+  .problem-list { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+/* ============================================================
+   STATS — "Resultados em números", logo após hero
+   ============================================================ */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  background: #0A1F44;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  flex-wrap: wrap;
+  border-bottom: 3px solid var(--orange);
+}
+.stat {
+  flex: 1;
+  min-width: 180px;
+  padding: 16px 24px;
+  position: relative;
+}
+.stat:not(:last-child)::after {
+  content: '';
+  position: absolute; right: 0; top: 15%; bottom: 15%;
+  width: 1px; background: rgba(255,255,255,.1);
+}
+.stat h3 {
+  font-family: 'Montserrat', var(--font-head);
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--orange); line-height: 1;
+  letter-spacing: -1px; margin-bottom: 8px;
+}
+.stat p {
+  font-size: .9rem;
+  color: rgba(255,255,255,.7);
+  line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .stats { flex-direction: column; padding: 0; }
+  .stat { padding: 28px 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .stat:not(:last-child)::after { display: none; }
+}
+
+/* ============================================================
+   FEATURE BOXES — orange left border accent cards
+   ============================================================ */
+.feature-box {
+  background: var(--white);
+  border-left: 4px solid var(--orange);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 24px 28px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+  transition: all var(--trans);
+}
+.feature-box:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.10);
+  transform: translateX(4px);
+}
+.feature-box h4 {
+  font-family: 'Montserrat', var(--font-head);
+  font-size: 1rem; font-weight: 700;
+  color: var(--text); margin-bottom: 6px;
+}
+.feature-box p { font-size: .88rem; color: var(--text-muted); line-height: 1.65; }
+.feature-box-icon {
+  width: 36px; height: 36px;
+  background: rgba(245,124,0,.1);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.feature-box-icon svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; stroke-width: 2; }
+
+/* Feature boxes grid layout */
+.feature-boxes-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+  margin-top: 52px;
+}
+
+/* ============================================================
+   WHATSAPP BUTTON — pill style with label
+   ============================================================ */
+.whatsapp-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  display: flex; align-items: center; gap: 10px;
+  background: #25D366; color: var(--white);
+  padding: 14px 20px;
+  border-radius: 50px;
+  box-shadow: 0 6px 32px rgba(37,211,102,.42);
+  font-family: var(--font-body); font-size: .88rem; font-weight: 600;
+  white-space: nowrap;
+  transition: all var(--trans);
+  animation: pulse-wa 2.4s ease-in-out infinite;
+  max-width: 200px; overflow: hidden;
+}
+.whatsapp-float svg { width: 22px; height: 22px; fill: var(--white); flex-shrink: 0; }
+.whatsapp-label { transition: max-width var(--trans), opacity var(--trans); max-width: 120px; opacity: 1; }
+.whatsapp-float:hover {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 10px 40px rgba(37,211,102,.55);
+  animation: none;
+}
+@media (max-width: 600px) {
+  .whatsapp-label { max-width: 0; opacity: 0; }
+  .whatsapp-float { padding: 14px; border-radius: 50%; }
+}
+@keyframes pulse-wa {
+  0%,100% { box-shadow: 0 6px 32px rgba(37,211,102,.42); }
+  50% { box-shadow: 0 6px 52px rgba(37,211,102,.68); }
+}
+
+/* ============================================================
+   RESPONSIVE ADDITIONS
+   ============================================================ */
+@media (max-width: 768px) {
+  .stats-inner { flex-direction: column; }
+  .stats-item::after { display: none; }
+  .stats-item { padding: 28px 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .feature-boxes-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 1024px) {
+  .feature-boxes-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER — Edit nav links below
+     ============================================================ -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">NucleoTec</span>
+          <span class="logo-sub">Engenharia</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#solucao">Solução</a></li>
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato" class="btn btn--orange nav-cta">Solicitar Análise</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="#solucao" onclick="closeMenu()">Solução</a>
+    <a href="#beneficios" onclick="closeMenu()">Benefícios</a>
+    <a href="#projetos" onclick="closeMenu()">Projetos</a>
+    <a href="#sobre" onclick="closeMenu()">Sobre</a>
+    <a href="#contato" onclick="closeMenu()">Contato</a>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO SECTION
+     Edit: headline, subheadline, stats, CTA buttons
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-geo"></div>
+  <div class="container">
+    <div class="hero-content">
+      <!-- LEFT: Copy -->
+      <div class="hero-left">
+        <div class="tag">Engenharia Estrutural</div>
+        <!-- EDIT: Main headline -->
+        <h1 class="hero-headline">
+          Engenharia estrutural <em>inteligente</em> para reduzir custos e prazos da sua obra
+        </h1>
+        <!-- EDIT: Subheadline -->
+        <p class="hero-subline">
+          A NucleoTec Engenharia aplica o sistema de lajes cubetas para otimizar estruturas, reduzir cargas, 
+          economizar materiais e acelerar a execução de obras residenciais e comerciais de alto padrão.
+        </p>
+        <div class="hero-actions">
+          <!-- EDIT: CTA button link (href) and WhatsApp number -->
+          <a href="#contato" class="btn btn--orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Solicitar análise da obra
+          </a>
+          <a href="#solucao" class="btn btn--outline">
+            Conhecer a solução
+          </a>
+        </div>
+        <!-- EDIT: Hero stats — replace placeholder numbers -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-num">Até -50<span>%</span></div>
+            <div class="stat-label">Redução de concreto</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">Até 30<span>%</span></div>
+            <div class="stat-label">Economia no prazo</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">+100</div>
+            <div class="stat-label">Obras assessoradas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">15<span>+</span></div>
+            <div class="stat-label">Anos de experiência</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Visual -->
+      <div class="hero-visual" data-anim="right">
+        <div class="hero-img-wrap">
+          <!-- EDIT: Replace with <img src="..." alt="..."> when image is available -->
+          <img src="laje-cubeta.jpg" alt="Obra com laje cubeta">
+          </div>
+          <div class="hero-badge">
+            <strong>NE</strong>
+            <span>Nordeste</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    scroll
+  </div>
+</section>
+
+
+<!-- ============================================================
+     STATS — "Resultados em números", logo após hero
+     Edit: valores e labels abaixo
+     ============================================================ -->
+<section class="stats" id="stats">
+  <!-- EDIT: adicione ou remova .stat conforme necessário -->
+  <div class="stat">
+    <h3>Até -50%</h3>
+    <p>Redução no consumo de concreto</p>
+  </div>
+  <div class="stat">
+    <h3>+30%</h3>
+    <p>Agilidade na execução</p>
+  </div>
+  <div class="stat">
+    <h3>7 a 10m</h3>
+    <p>Vãos livres estruturais</p>
+  </div>
+  <div class="stat">
+    <h3>−35%</h3>
+    <p>Redução de carga estrutural</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROBLEM SECTION
+     Edit: problems array below
+     ============================================================ -->
+<section class="section" id="problemas">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-intro" data-anim="left">
+        <div class="tag">O Problema</div>
+        <!-- EDIT: Section headline -->
+        <h2 class="headline">Os gargalos que travam o seu empreendimento</h2>
+        <!-- EDIT: Section description -->
+        <p class="subline">Obras de alto padrão exigem eficiência técnica e controle rigoroso. Mas muitos projetos ainda enfrentam os mesmos obstáculos que comprometem o resultado final.</p>
+      </div>
+      <div class="problem-list">
+        <!-- EDIT: Problem cards — duplicate/edit as needed -->
+        <div class="problem-item" data-anim data-delay="1">
+          <div class="problem-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h4>Custos fora de controle</h4>
+          <p>Consumo excessivo de concreto e aço elevam o orçamento e comprometem a viabilidade do projeto.</p>
+        </div>
+        <div class="problem-item" data-anim data-delay="2">
+          <div class="problem-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <h4>Atrasos no cronograma</h4>
+          <p>Sistemas estruturais convencionais demandam mais fôrmas, concretagem e cura — atrasando o progresso.</p>
+        </div>
+        <div class="problem-item" data-anim data-delay="3">
+          <div class="problem-icon">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h4>Superestrutura pesada</h4>
+          <p>Lajes maciças aumentam cargas nas fundações, elevando custos em toda a cadeia estrutural da obra.</p>
+        </div>
+        <div class="problem-item" data-anim data-delay="4">
+          <div class="problem-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h4>Desperdício de materiais</h4>
+          <p>A falta de otimização estrutural leva a perdas significativas em concreto, aço e mão de obra.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SOLUTION SECTION
+     Edit: steps and visual description
+     ============================================================ -->
+<section class="solution-section" id="solucao">
+  <div class="container">
+    <div class="solution-grid">
+      <!-- Left: steps -->
+      <div data-anim="left">
+        <div class="tag">Nossa Solução</div>
+        <!-- EDIT: Headline -->
+        <h2 class="headline headline--white">Sistema de <em style="font-style:normal;color:var(--orange)">laje cubeta</em> aplicado com precisão técnica</h2>
+        <!-- EDIT: Description -->
+        <p class="subline subline--white">
+          A laje cubeta é uma solução estrutural que substitui o volume sólido de concreto por uma malha nervurada, 
+          reduzindo peso, consumo de material e cargas transmitidas à estrutura — sem perder resistência.
+        </p>
+        <div class="solution-steps">
+          <!-- EDIT: Duplicate or modify steps below -->
+          <div class="solution-step">
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <h4>Análise e planejamento estrutural</h4>
+              <p>Avaliamos o projeto arquitetônico e definimos o sistema de cubetas ideal para cada vão, carga e uso.</p>
+            </div>
+          </div>
+          <div class="solution-step">
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <h4>Otimização do projeto</h4>
+              <p>Calculamos as nervuras, a espessura da capa e o posicionamento das cubetas para máxima eficiência.</p>
+            </div>
+          </div>
+          <div class="solution-step">
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <h4>Acompanhamento de execução</h4>
+              <p>Nossa equipe garante que o sistema seja executado com precisão, evitando retrabalhos e desvios técnicos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: visual -->
+      <div data-anim="right">
+        <div class="cubeta-visual">
+          <p style="font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;color:rgba(255,255,255,.4)">SEÇÃO TRANSVERSAL — LAJE CUBETA</p>
+          <div class="cubeta-diagram">
+            <div class="cubeta-cross">
+              <!-- Row 1: top slab -->
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <!-- Row 2: voids and beams -->
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell void"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell void"></div>
+              <div class="cubeta-cell beam"></div>
+              <!-- Row 3: bottom rib -->
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+              <div class="cubeta-cell beam"></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="cubeta-label">Nervuras de concreto (vigas)</div>
+            <div class="cubeta-label" style="--orange:#5A6B7A">Cubetas (redução de volume)</div>
+          </div>
+          <!-- EDIT: Replace diagram above with actual technical drawing if available -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BENEFITS SECTION
+     Edit: benefit cards below
+     ============================================================ -->
+<section class="benefits-section" id="beneficios">
+  <div class="container">
+    <div class="benefits-header" data-anim>
+      <div class="tag" style="justify-content:center;">Vantagens do Sistema</div>
+      <!-- EDIT: Headline -->
+      <h2 class="headline" style="text-align:center">Resultados concretos para o seu projeto</h2>
+    </div>
+    <div class="benefits-grid">
+      <!-- EDIT: Modify or add benefit cards below -->
+      <div class="benefit-card" data-anim data-delay="1">
+        <div class="benefit-num">Até −50%</div>
+        <h4>Consumo de concreto</h4>
+        <p>A redução de volume sólido pode chegar a 50% em relação às lajes maciças convencionais.</p>
+      </div>
+      <div class="benefit-card" data-anim data-delay="2">
+        <div class="benefit-num">Até −35%</div>
+        <h4>Carga estrutural total</h4>
+        <p>Estrutura mais leve reduz cargas em vigas, pilares e fundações, otimizando toda a obra.</p>
+      </div>
+      <div class="benefit-card" data-anim data-delay="3">
+        <div class="benefit-num">+30%</div>
+        <h4>Velocidade de execução</h4>
+        <p>Menos concretagem e fôrmas tradicionais resultam em cronogramas mais curtos e previsíveis.</p>
+      </div>
+      <div class="benefit-card" data-anim data-delay="4">
+        <div class="benefit-num">12m+</div>
+        <h4>Vãos sem pilares</h4>
+        <p>Maior liberdade arquitetônica com vãos livres de até 12 metros ou mais, sem pilares intermediários.</p>
+      </div>
+      <div class="benefit-card" data-anim data-delay="5">
+        <div class="benefit-num">↓</div>
+        <h4>Desperdício de material</h4>
+        <p>Projeto técnico preciso minimiza sobras, perdas e retrabalhos na fase de concretagem.</p>
+      </div>
+      <div class="benefit-card" data-anim data-delay="5">
+        <div class="benefit-num">✓</div>
+        <h4>Conforto térmico e acústico</h4>
+        <p>A câmara de ar formada pelas cubetas melhora o isolamento térmico e acústico entre pavimentos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROJECT TYPES SECTION
+     Edit: project cards and images
+     ============================================================ -->
+<section class="projects-section" id="projetos">
+  <div class="container">
+    <div class="projects-header" data-anim>
+      <div class="tag">Aplicações</div>
+      <!-- EDIT: Headline -->
+      <h2 class="headline">Tipos de projeto que atendemos</h2>
+    </div>
+    <div class="projects-grid">
+      <!-- EDIT: Replace placeholders with real images: <img src="..." alt="..."> inside .project-img -->
+      <div class="project-card" data-anim data-delay="1">
+        <div class="project-img">
+          <span class="project-tag">Residencial</span>
+          <img src="01-Fachada.jpg" alt="Fachada residencial de alto padrão">
+        </div>
+        <div class="project-info">
+          <h4>Edifícios Residenciais de Alto Padrão</h4>
+          <p>Apartamentos premium com plantas flexíveis e vãos estruturais otimizados.</p>
+        </div>
+      </div>
+      <div class="project-card" data-anim data-delay="2">
+        <div class="project-img">
+          <span class="project-tag">Comercial</span>
+          <img src="comercial.jpg" alt="Fachada prédio comercial cubeta">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.2" width="40"><rect x="6" y="6" width="36" height="36" rx="2"/><path d="M6 18h36M6 30h36M18 6v36M30 6v36"/></svg>
+            <p class="project-img-label">INSERIR IMAGEM</p>
+          </div>
+        </div>
+        <div class="project-info">
+          <h4>Edifícios Comerciais</h4>
+          <p>Lajes de grande vão para escritórios e espaços corporativos com planta livre.</p>
+        </div>
+      </div>
+      <div class="project-card" data-anim data-delay="3">
+        <div class="project-img">
+          <span class="project-tag">Estacionamento</span>
+          <img src="garagem.jpg" alt="Garagem com laje cubeta">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.2" width="40"><rect x="4" y="8" width="40" height="32" rx="2"/><path d="M16 18h8a6 6 0 010 12h-8V18z"/></svg>
+            </div>
+        </div>
+        <div class="project-info">
+          <h4>Garagens e Estacionamentos</h4>
+          <p>Estruturas de concreto com vãos amplos, ideal para garagens em subsolos e coberturas.</p>
+        </div>
+      </div>
+      <div class="project-card" data-anim data-delay="4">
+        <div class="project-img">
+          <span class="project-tag">Grandes Vãos</span>
+          <img src="auditorio.jpg" alt="Auditório com laje cubeta">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.2" width="40"><path d="M4 32 Q24 10 44 32"/><path d="M4 32h40"/></svg>
+            
+          </div>
+        </div>
+        <div class="project-info">
+          <h4>Projetos de Grandes Vãos</h4>
+          <p>Galpões, auditórios e salões que exigem vãos livres sem interferências estruturais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     DIFFERENTIALS SECTION
+     Edit: differential items
+     ============================================================ -->
+<section class="diff-section" id="diferenciais">
+  <div class="container">
+    <div data-anim>
+      <div class="tag">Nossos Diferenciais</div>
+      <!-- EDIT: Headline -->
+      <h2 class="headline headline--white">Por que a NucleoTec é o parceiro certo</h2>
+    </div>
+    <div class="diff-grid">
+      <!-- EDIT: Edit or add differential items -->
+      <div class="diff-item" data-anim data-delay="1">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h4>Orientados por dados</h4>
+        <p>Cada projeto é baseado em cálculo estrutural preciso. Nenhuma decisão sem respaldo técnico e numérico.</p>
+      </div>
+      <div class="diff-item" data-anim data-delay="2">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h4>Prazos previsíveis</h4>
+        <p>Planejamos cada etapa para que o cronograma seja cumprido sem surpresas — do projeto à concretagem final.</p>
+      </div>
+      <div class="diff-item" data-anim data-delay="3">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Qualidade e segurança</h4>
+        <p>Todos os projetos seguem as normas técnicas brasileiras (ABNT) com rastreabilidade total do processo.</p>
+      </div>
+      <div class="diff-item" data-anim data-delay="1">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Parceria técnica real</h4>
+        <p>Trabalhamos lado a lado com a construtora: do detalhamento ao acompanhamento de obra.</p>
+      </div>
+      <div class="diff-item" data-anim data-delay="2">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h4>Eficiência comprovada</h4>
+        <p>Resultados mensuráveis em cada projeto: redução de carga, custo e prazo com documentação técnica.</p>
+      </div>
+      <div class="diff-item" data-anim data-delay="3">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Experiência no Nordeste</h4>
+        <p>Conhecemos as especificidades do mercado regional: solo, clima, fornecedores e normas locais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FEATURE BOXES — orange left-border accent cards
+     Edit: feature content below
+     ============================================================ -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div data-anim style="text-align:center;">
+      <div class="tag" style="justify-content:center;">Como Trabalhamos</div>
+      <h2 class="headline">Precisão técnica em cada etapa</h2>
+      <p class="subline" style="margin:16px auto 0;text-align:center;">Do primeiro contato à execução final, cada decisão é embasada em dados e experiência estrutural.</p>
+    </div>
+    <div class="feature-boxes-grid">
+      <!-- EDIT: Modify or add feature-box items as needed -->
+      <div class="feature-box" data-anim data-delay="1">
+        <div class="feature-box-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h4>Diagnóstico estrutural gratuito</h4>
+        <p>Analisamos o seu projeto arquitetônico e identificamos onde o sistema cubeta gera mais economia.</p>
+      </div>
+      <div class="feature-box" data-anim data-delay="2">
+        <div class="feature-box-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        </div>
+        <h4>Projeto detalhado e dimensionado</h4>
+        <p>Entregamos prancha técnica com nervuras, cubetas, capa e armação — pronto para a obra executar.</p>
+      </div>
+      <div class="feature-box" data-anim data-delay="3">
+        <div class="feature-box-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h4>Acompanhamento técnico em obra</h4>
+        <p>Nossa equipe apoia a execução com visitas e suporte remoto, garantindo fidelidade ao projeto.</p>
+      </div>
+      <div class="feature-box" data-anim data-delay="1">
+        <div class="feature-box-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Conformidade com normas ABNT</h4>
+        <p>Todos os projetos seguem a NBR 6118 e demais normas vigentes, com ART de responsabilidade técnica.</p>
+      </div>
+      <div class="feature-box" data-anim data-delay="2">
+        <div class="feature-box-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h4>Memorial de cálculo completo</h4>
+        <p>Documentação técnica detalhada para aprovação em prefeituras, financiadoras e fiscalização de obra.</p>
+      </div>
+      <div class="feature-box" data-anim data-delay="3">
+        <div class="feature-box-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Atendimento personalizado</h4>
+        <p>Cada obra tem características únicas — nosso atendimento é individualizado do início ao fim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AUTHORITY / SHOWCASE SECTION
+     Edit: metrics, gallery images, testimonials
+     ============================================================ -->
+<section class="authority-section" id="sobre">
+  <div class="container">
+    <div data-anim style="margin-bottom:48px;">
+      <div class="tag">Autoridade e Resultados</div>
+      <!-- EDIT: Headline -->
+      <h2 class="headline">Resultados que constroem reputação</h2>
+    </div>
+
+    <!-- EDIT: Replace metric values below -->
+    <div class="metrics-band" data-anim>
+      <div class="metric-block">
+        <div class="metric-val">120<em>+</em></div>
+        <div class="metric-lbl">Projetos realizados</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-val">85<em>k</em></div>
+        <div class="metric-lbl">m² de laje projetados</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-val">15<em>+</em></div>
+        <div class="metric-lbl">Anos no mercado</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-val">98<em>%</em></div>
+        <div class="metric-lbl">Projetos no prazo</div>
+      </div>
+    </div>
+
+    <!-- EDIT: Replace placeholders with real project photos -->
+    <div class="gallery-grid" data-anim>
+      <div class="gallery-item">
+        <img src="projeto-1.jpg" alt="Projeto estrutural com laje cubeta">
+      </div>
+      <div class="gallery-item">
+        <img src="projeto-2.jpg" alt="Projeto grandes vãos com laje cubeta">
+      </div>
+      <div class="gallery-item">
+        <img src="projeto-3.jpg" alt="Projeto comercial com laje cubeta">
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT: Replace placeholder testimonials with real quotes -->
+    <h3 style="font-family:var(--font-head);font-size:1.6rem;font-weight:700;margin-bottom:28px;" data-anim>O que dizem nossos clientes</h3>
+    <div class="testimonials" data-anim>
+      <div class="testimonial">
+        <p class="testimonial-quote">A NucleoTec trouxe uma economia real de custo na estrutura do nosso edifício. O prazo foi cumprido e o projeto superou nossas expectativas técnicas.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MS</div>
+          <div>
+            <!-- EDIT: Client name and role -->
+            <div class="author-name">Marcos Silva</div>
+            <div class="author-role">Diretor Técnico — Construtora XYZ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">Trabalhar com uma equipe que domina o sistema cubeta fez toda a diferença. Reduzimos a carga nas fundações e viabilizamos o projeto financeiramente.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CP</div>
+          <div>
+            <!-- EDIT: Client name and role -->
+            <div class="author-name">Carla Pinheiro</div>
+            <div class="author-role">Gerente de Obra — Incorporadora ABC</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">Recomendo a NucleoTec para qualquer projeto que precise de soluções estruturais modernas. Profissionalismo, técnica e entrega no prazo.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RL</div>
+          <div>
+            <!-- EDIT: Client name and role -->
+            <div class="author-name">Ricardo Lima</div>
+            <div class="author-role">Engenheiro Responsável — Lima Construções</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MISSION / VISION / VALUES — EDITABLE BLOCKS
+     Edit: mission, vision, and values text below
+     ============================================================ -->
+<section class="mvv-section" id="missao">
+  <div class="container">
+    <div data-anim>
+      <div class="tag">Identidade Institucional</div>
+      <h2 class="headline headline--white">Quem somos e para onde vamos</h2>
+    </div>
+    <div class="mvv-grid">
+      <!-- EDIT BLOCK: Mission -->
+      <div class="mvv-block" data-anim data-delay="1">
+        <div class="mvv-block-label">Missão</div>
+        <h3>Construir com inteligência estrutural</h3>
+        <!-- EDIT: Mission text -->
+        <p>Proporcionar maior eficiência à construção civil através de soluções estruturais com cubetas, integrando planejamento, gestão e execução para reduzir custos e prazos com alto padrão de qualidade e confiabilidade.</p>
+      </div>
+      <!-- EDIT BLOCK: Vision -->
+      <div class="mvv-block" data-anim data-delay="2">
+        <div class="mvv-block-label">Visão</div>
+        <h3>Referência regional em estruturas inovadoras</h3>
+        <!-- EDIT: Vision text -->
+        <p>Ser, até 2035, referência no Nordeste em soluções estruturais inteligentes com tecnologia de cubetas, executando obras de alto padrão, sendo reconhecida pela eficiência na redução de custos, prazos e otimização estrutural com qualidade, segurança e confiabilidade.</p>
+      </div>
+      <!-- EDIT BLOCK: Values -->
+      <div class="mvv-block mvv-values" data-anim data-delay="3">
+        <div class="mvv-block-label">Valores</div>
+        <h3>Princípios que guiam cada projeto</h3>
+        <!-- EDIT: Values list — add or remove items freely -->
+        <ul>
+          <li>Eficiência com base em dados</li>
+          <li>Compromisso com o resultado do cliente</li>
+          <li>Transparência e confiabilidade</li>
+          <li>Segurança como valor inegociável</li>
+          <li>Exelência técnica e padronização</li>
+          <li>Sustentabilidade com eficiência</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     VIDEO SECTION
+     Edit: section headline and replace video placeholder
+     ============================================================ -->
+<section class="video-section">
+  <div class="container">
+    <div style="text-align:center;" data-anim>
+      <div class="tag" style="justify-content:center;">Vídeo Institucional</div>
+      <!-- EDIT: Headline -->
+      <h2 class="headline">Veja como aplicamos a tecnologia cubeta</h2>
+      <!-- EDIT: Subheadline -->
+      <p class="subline" style="margin:16px auto 0;text-align:center;">Entenda o processo de projeto e execução que transforma a estrutura das obras.</p>
+    </div>
+    <div class="video-wrap" data-anim>
+      <!-- EDIT: Replace this div with an iframe when video is available:
+           <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
+      -->
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <p class="video-caption">INSERIR VÍDEO INSTITUCIONAL — YouTube / Vimeo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA SECTION
+     Edit: headline and button links
+     ============================================================ -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <!-- EDIT: CTA headline and description -->
+        <h2>Envie seu projeto e receba uma análise técnica gratuita</h2>
+        <p>Nossa equipe avalia a viabilidade do sistema cubeta para a sua obra e apresenta projeção de economia real.</p>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <!-- EDIT: Button links -->
+        <a href="https://wa.me/5584997073444" target="_blank" class="btn btn--white" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" stroke="none"/></svg>
+          Falar pelo WhatsApp
+        </a>
+        <a href="#contato" class="btn btn--white-outline">Enviar projeto por e-mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACT SECTION
+     Edit: WhatsApp number, email, phone, address
+     ============================================================ -->
+<section class="contact-section" id="contato">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Left: contact info -->
+      <div data-anim="left">
+        <div class="tag">Contato</div>
+        <!-- EDIT: Headline -->
+        <h2 class="headline headline--white">Entre em contato com nossa equipe</h2>
+        <p class="subline subline--white">Estamos prontos para analisar seu projeto e apresentar a solução estrutural mais eficiente para sua obra.</p>
+        <div class="contact-info">
+          <!-- EDIT: WhatsApp number in href -->
+          <div class="contact-item">
+            <div class="contact-ico">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">WhatsApp</div>
+              <!-- EDIT: Replace with real number -->
+              <div class="contact-item-val">(84) 9 8246-5511</div>
+            </div>
+          </div>
+          <!-- EDIT: Email -->
+          <div class="contact-item">
+            <div class="contact-ico">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">E-mail</div>
+              <!-- EDIT: Replace with real email -->
+              <div class="contact-item-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f89b97968c998c97b8968d9b949d978c9d9bd69d969fd69a8a">nucleotec@nucleotec.com.br</a></div>
+            </div>
+          </div>
+          <!-- EDIT: Phone -->
+          <div class="contact-item">
+            <div class="contact-ico">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Telefone</div>
+              <!-- EDIT: Replace with real phone -->
+              <div class="contact-item-val">(84) 3826-6789</div>
+            </div>
+          </div>
+          <!-- EDIT: Location -->
+          <div class="contact-item">
+            <div class="contact-ico">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Localização</div>
+              <!-- EDIT: Replace with real address -->
+              <div class="contact-item-val">Natal, Rio Grande do Norte — Nordeste do Brasil</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div data-anim="right">
+        <div class="tag">Solicite sua análise</div>
+        <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:4px;">Envie os dados do seu projeto</h3>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.5);margin-bottom:0;">Retornamos em até 24 horas úteis.</p>
+        <!-- EDIT: Update form action URL or connect to backend/FormSubmit/Netlify Forms -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Seu nome</label>
+              <input type="text" placeholder="Nome completo" required>
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" placeholder="seu@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Telefone / WhatsApp</label>
+              <input type="tel" placeholder="(84) 9 9999-9999">
+            </div>
+            <div class="form-group">
+              <label>Tipo de projeto</label>
+              <!-- EDIT: Add/remove options as needed -->
+              <select>
+                <option value="" disabled selected>Selecione</option>
+                <option>Residencial Alto Padrão</option>
+                <option>Edifício Comercial</option>
+                <option>Estacionamento / Garagem</option>
+                <option>Grande Vão</option>
+                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mensagem / Detalhes do projeto</label>
+            <textarea placeholder="Descreva o projeto, localização aproximada, número de pavimentos, etc."></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn--orange" style="width:100%;justify-content:center;">
+              Solicitar análise técnica gratuita
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     Edit: links, address, social
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name">NucleoTec</span>
+            <span class="logo-sub">Engenharia</span>
+          </div>
+        </a>
+        <!-- EDIT: Footer description -->
+        <p>Soluções estruturais inteligentes com lajes cubetas para obras de alto padrão no Nordeste do Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegação</h5>
+        <ul>
+          <li><a href="#solucao">Nossa Solução</a></li>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Serviços</h5>
+        <ul>
+          <!-- EDIT: Update service links -->
+          <li><a href="#">Projeto Estrutural</a></li>
+          <li><a href="#">Laje Cubeta</a></li>
+          <li><a href="#">Assessoria de Obra</a></li>
+          <li><a href="#">Laudo Técnico</a></li>
+          <li><a href="#">Consultoria Estrutural</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <ul>
+          <!-- EDIT: Replace with real contact info -->
+          <li><a href="tel:+558433333333">(84) 3333-3333</a></li>
+          <li><a href="https://wa.me/558499999999">(84) 9 9999-9999</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#02616d6c7663766d426c77616e676d7667612c676c652c6070"><span class="__cf_email__" data-cfemail="3c5f5352485d48537c52495f50595348595f1259525b125e4e">[email&#160;protected]</span></a></li>
+          <li><a href="#">Natal — RN</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <!-- EDIT: Update copyright year and CREA number if applicable -->
+      <p>© 2025 NucleoTec Engenharia. Todos os direitos reservados.</p>
+      <p>Desenvolvido com <span>♥</span> para o mercado nordestino</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     FLOATING WHATSAPP BUTTON
+     Edit: WhatsApp number in href
+     ============================================================ -->
+<!-- EDIT: Replace 558499999999 with real number (country+area+number, no symbols) -->
+<a href="https://wa.me/558499999999?text=Olá!%20Gostaria%20de%20solicitar%20uma%20análise%20técnica%20para%20minha%20obra."
+   target="_blank" rel="noopener"
+   class="whatsapp-float"
+   aria-label="Falar pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="whatsapp-label">WhatsApp</span>
+</a>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// --- Sticky header shadow on scroll ---
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// --- Mobile menu toggle ---
+const hamburger = document.getElementById('hamburger');
+const navMobile = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => {
+  navMobile.classList.toggle('open');
+});
+function closeMenu() {
+  navMobile.classList.remove('open');
+}
+
+// --- Scroll animations (IntersectionObserver) ---
+const animEls = document.querySelectorAll('[data-anim]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+animEls.forEach(el => observer.observe(el));
+
+// --- Contact form: simple UX feedback ---
+// EDIT: Replace this with a real form submission handler (fetch to backend, FormSubmit, etc.)
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  btn.textContent = 'Mensagem enviada! ✓';
+  btn.style.background = '#27ae60';
+  setTimeout(() => {
+    btn.textContent = 'Solicitar análise técnica gratuita';
+    btn.style.background = '';
+    this.reset();
+  }, 3500);
+});
+
+// --- Smooth scroll for anchor links ---
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// --- Counter animation for stats band ---
+function animateCounter(el, target, duration) {
+  const isText = isNaN(parseFloat(target));
+  if (isText) return; // skip non-numeric like "7 a 10m"
+  const num = parseFloat(target);
+  const prefix = target.match(/^[^0-9]*/)[0];
+  const suffix = target.match(/[^0-9.]*$/)[0];
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = Math.round(num * ease * 10) / 10;
+    el.textContent = prefix + val + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = prefix + num + suffix;
+  }
+  requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stats-num').forEach(el => {
+        const raw = el.textContent.trim();
+        // Only animate pure numeric patterns
+        if (/^[+−\-]?\d/.test(raw)) animateCounter(el, raw, 1400);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const statsBand = document.querySelector('.stats-band');
+if (statsBand) statsObserver.observe(statsBand);
+</script>
+
+</body>
+</html>
