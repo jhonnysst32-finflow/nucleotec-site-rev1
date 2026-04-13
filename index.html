@@ -215,9 +215,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================================ */
 .hero {
   min-height: 100vh;
-  /* EDIT: Replace 'imagem-obra.jpg' with your real image path */
   background: linear-gradient(rgba(10,31,68,0.85), rgba(10,31,68,0.85)),
-              url('imagem-obra.jpg') center/cover no-repeat;
+              url('01-Fachada.jpg') center/cover no-repeat;
   color: white;
   position: relative;
   display: flex; align-items: center;
@@ -1008,6 +1007,222 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 1024px) {
   .feature-boxes-grid { grid-template-columns: 1fr 1fr; }
 }
+
+.team-flow {
+  padding: 80px 20px;
+  background:
+    radial-gradient(circle at top, rgba(245,124,0,.12), transparent 32%),
+    linear-gradient(180deg, var(--blue-mid), var(--blue));
+}
+
+.team-flow .section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.team-flow .section-subtitle {
+  max-width: 980px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+}
+
+/* GRID */
+.cards-flow {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  overflow-x: auto;
+  margin-top: 56px;
+  padding: 18px 24px 24px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245,124,0,.55) rgba(255,255,255,.08);
+}
+
+/* CARD */
+.team-card {
+  position: relative;
+  width: 180px;
+  flex-shrink: 0;
+  padding-top: 30px;
+  padding-bottom: 84px;
+  margin-left: -18px;
+  transition: transform 0.32s ease, margin-left 0.32s ease, z-index 0.32s ease;
+  cursor: pointer;
+  z-index: 1;
+  outline: none;
+}
+
+/* PRIMEIRO CARD */
+.team-card:first-child {
+  margin-left: 0;
+}
+
+.card-nameplate {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(14,20,31,.96), rgba(28,38,54,.92));
+  border: 1px solid rgba(245,124,0,.35);
+  box-shadow: 0 12px 28px rgba(0,0,0,.24);
+  color: var(--white);
+  font-family: 'Montserrat', var(--font-head);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+/* IMAGEM */
+.card-inner {
+  position: relative;
+  height: 240px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  box-shadow: 0 12px 30px rgba(0,0,0,.28);
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.card-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--white);
+  font-family: var(--font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* TEXTO */
+.card-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.card-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--white);
+}
+
+.card-info p {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,.66);
+}
+
+/* HOVER (FOCO) */
+.team-card:hover,
+.team-card.is-loop-active,
+.team-card:focus,
+.team-card:focus-visible {
+  transform: translateY(-10px);
+  z-index: 10;
+}
+
+/* REVELAR PRÓXIMO CARD */
+.team-card:hover + .team-card,
+.team-card.is-loop-active + .team-card,
+.team-card:focus + .team-card,
+.team-card:focus-visible + .team-card {
+  margin-left: 6px;
+}
+
+/* FOCO VISUAL */
+.team-card:hover .card-inner,
+.team-card.is-loop-active .card-inner,
+.team-card:focus .card-inner,
+.team-card:focus-visible .card-inner {
+  transform: scale(1.015);
+  border-color: rgba(245,124,0,.5);
+  box-shadow: 0 18px 38px rgba(0,0,0,.34);
+}
+
+/* MOSTRAR TEXTO */
+.team-card:hover .card-nameplate,
+.team-card.is-loop-active .card-nameplate,
+.team-card:focus .card-nameplate,
+.team-card:focus-visible .card-nameplate {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.team-card:hover .card-info,
+.team-card.is-loop-active .card-info,
+.team-card:focus .card-info,
+.team-card:focus-visible .card-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* DESTAQUE */
+.highlight .card-inner {
+  border: 2px solid var(--orange);
+}
+
+@media (hover: none) {
+  .team-card {
+    padding-top: 30px;
+    margin-left: -14px;
+  }
+
+  .team-card:active {
+    transform: translateY(-8px);
+    z-index: 10;
+  }
+
+  .team-card:active + .team-card {
+    margin-left: 6px;
+  }
+
+  .team-card:active .card-inner {
+    border-color: rgba(245,124,0,.5);
+    box-shadow: 0 18px 38px rgba(0,0,0,.34);
+  }
+
+  .team-card:active .card-nameplate {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .team-card:active .card-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 </style>
 </head>
 
@@ -1645,6 +1860,98 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   </div>
 </section>
 
+<section class="team-flow">
+  <div class="container">
+
+    <h2 class="section-title">Estrutura Operacional</h2>
+    <p class="section-subtitle">
+      A estrutura operacional da NucleoTec Engenharia &eacute; baseada em um modelo integrado de gest&atilde;o que conecta engenharia, planejamento, execu&ccedil;&atilde;o, seguran&ccedil;a e tecnologia em um fluxo cont&iacute;nuo, garantindo controle de custos, conformidade normativa e aplica&ccedil;&atilde;o de solu&ccedil;&otilde;es estruturais eficientes, com foco em desempenho, confiabilidade, previsibilidade dos processos e excel&ecirc;ncia na entrega dos projetos.
+    </p>
+
+    <div class="cards-flow">
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Eng&ordf; Isamara Pereira</div>
+        <div class="card-inner">
+          <img src="analista-comercial.jpg" alt="Analista Comercial" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Analista Comercial</h4>
+          <p>Captação e relacionamento com clientes.</p>
+        </div>
+      </div>
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Inserir Nome</div>
+        <div class="card-inner">
+          <img src="membro2.jpg" alt="Engenheiro de Custos" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Eng. de Custos</h4>
+          <p>Análise de viabilidade e simulações.</p>
+        </div>
+      </div>
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Eng&ordm; Thiago Araújo</div>
+        <div class="card-inner">
+          <img src="diretor-tecnico.jpg" alt="Diretor Técnico" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Diretor Técnico</h4>
+          <p>Validação estrutural e decisões técnicas.</p>
+        </div>
+      </div>
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Eng&ordf; Beatriz Augusta</div>
+        <div class="card-inner">
+          <img src="gerente-de-projetos.jpg" alt="Gerente de Projetos" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Gerente de Projetos</h4>
+          <p>Planejamento e controle das etapas.</p>
+        </div>
+      </div>
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Eng&ordm; Mizael Ribeiro</div>
+        <div class="card-inner">
+          <img src="coordenador-ssc.jpg" alt="Coordenador SSO" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Coord. SSC</h4>
+          <p>Saúde, Segurança e Conformidade.</p>
+        </div>
+      </div>
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Eng&ordf; Fernanda Emilly</div>
+        <div class="card-inner">
+          <img src="coord-de-obras.jpg" alt="Coordenador de Obras" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Coord. de Obras</h4>
+          <p>Execução e controle da qualidade.</p>
+        </div>
+      </div>
+
+      <div class="team-card" tabindex="0">
+        <div class="card-nameplate">Eng&ordm; Jhonny Souza</div>
+        <div class="card-inner">
+          <img src="inovacao-&-tech.jpg" alt="Inovação e Tecnologia" onerror="this.style.display='none'">
+        </div>
+        <div class="card-info">
+          <h4>Analista de Inovação & Tech</h4>
+          <p>NucleoCalc e suporte tecnológico.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
 <!-- ============================================================
      VIDEO SECTION
@@ -1977,6 +2284,104 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 const statsBand = document.querySelector('.stats-band');
 if (statsBand) statsObserver.observe(statsBand);
+
+// --- Team cards autoplay loop ---
+const teamFlow = document.querySelector('.cards-flow');
+const teamCards = Array.from(document.querySelectorAll('.cards-flow .team-card'));
+
+if (teamFlow && teamCards.length) {
+  const loopDelay = 2000;
+  let activeCardIndex = 0;
+  let loopTimer = null;
+  let isLoopPaused = false;
+
+  function syncTeamFlowScroll(index) {
+    if (index === teamCards.length - 1) {
+      teamFlow.scrollTo({
+        left: teamFlow.scrollWidth - teamFlow.clientWidth,
+        behavior: 'smooth'
+      });
+    } else if (index === 0) {
+      teamFlow.scrollTo({
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  function setActiveTeamCard(index, { shouldScroll = true } = {}) {
+    activeCardIndex = (index + teamCards.length) % teamCards.length;
+
+    teamCards.forEach((card, cardIndex) => {
+      card.classList.toggle('is-loop-active', cardIndex === activeCardIndex);
+    });
+
+    if (shouldScroll) {
+      syncTeamFlowScroll(activeCardIndex);
+    }
+  }
+
+  function stopLoop() {
+    if (loopTimer) {
+      window.clearInterval(loopTimer);
+      loopTimer = null;
+    }
+  }
+
+  function startLoop() {
+    stopLoop();
+    loopTimer = window.setInterval(() => {
+      if (isLoopPaused) return;
+      setActiveTeamCard(activeCardIndex + 1);
+    }, loopDelay);
+  }
+
+  function pauseLoop(index) {
+    isLoopPaused = true;
+    stopLoop();
+    if (typeof index === 'number') {
+      setActiveTeamCard(index);
+    } else {
+      setActiveTeamCard(activeCardIndex, { shouldScroll: false });
+    }
+  }
+
+  function resumeLoop() {
+    if (!isLoopPaused) return;
+    isLoopPaused = false;
+    setActiveTeamCard(activeCardIndex, { shouldScroll: false });
+    startLoop();
+  }
+
+  teamCards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => pauseLoop(index));
+    card.addEventListener('focusin', () => pauseLoop(index));
+    card.addEventListener('click', () => pauseLoop(index));
+  });
+
+  teamFlow.addEventListener('mouseleave', () => {
+    if (!teamFlow.matches(':focus-within')) {
+      resumeLoop();
+    }
+  });
+
+  teamFlow.addEventListener('focusout', () => {
+    window.setTimeout(() => {
+      if (!teamFlow.matches(':hover') && !teamFlow.matches(':focus-within')) {
+        resumeLoop();
+      }
+    }, 0);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!teamFlow.contains(event.target)) {
+      resumeLoop();
+    }
+  });
+
+  setActiveTeamCard(activeCardIndex);
+  startLoop();
+}
 </script>
 
 </body>
