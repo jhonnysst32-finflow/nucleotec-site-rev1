@@ -702,6 +702,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
   border: 1px solid rgba(0,0,0,.08);
 }
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 /* Replace this div with an <iframe> when ready */
 .video-placeholder {
   position: absolute; inset: 0;
@@ -1882,17 +1888,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       </div>
 
       <div class="team-card" tabindex="0">
-        <div class="card-nameplate">Eng&ordm; João Miguel</div>
-        <div class="card-inner">
-          <img src="engenheiro-de-custos.jpg" alt="Engenheiro de Custos" onerror="this.style.display='none'">
-        </div>
-        <div class="card-info">
-          <h4>Eng. de Custos</h4>
-          <p>Análise de viabilidade e simulações.</p>
-        </div>
-      </div>
-
-      <div class="team-card" tabindex="0">
         <div class="card-nameplate">Eng&ordm; Thiago Araújo</div>
         <div class="card-inner">
           <img src="diretor-tecnico.jpg" alt="Diretor Técnico" onerror="this.style.display='none'">
@@ -1967,15 +1962,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <p class="subline" style="margin:16px auto 0;text-align:center;">Entenda o processo de projeto e execução que transforma a estrutura das obras.</p>
     </div>
     <div class="video-wrap" data-anim>
-      <!-- EDIT: Replace this div with an iframe when video is available:
-           <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
-      -->
-      <div class="video-placeholder">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </div>
-        <p class="video-caption">INSERIR VÍDEO INSTITUCIONAL — YouTube / Vimeo</p>
-      </div>
+      <video controls preload="metadata" playsinline>
+        <source src="vídeo-institucional-site.mp4" type="video/mp4">
+        Seu navegador não suporta reprodução de vídeo.
+      </video>
     </div>
   </div>
 </section>
