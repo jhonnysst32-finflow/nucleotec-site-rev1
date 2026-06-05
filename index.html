@@ -708,7 +708,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   object-fit: cover;
   display: block;
 }
-/* Replace this div with an <iframe> when ready */
+.video-wrap iframe {
+  border: none;
+}
 .video-placeholder {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
@@ -1957,15 +1959,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     <div style="text-align:center;" data-anim>
       <div class="tag" style="justify-content:center;">Vídeo Institucional</div>
       <!-- EDIT: Headline -->
-      <h2 class="headline">Veja como aplicamos a tecnologia cubeta</h2>
+      <h2 class="headline">Conheça a NucleoTec</h2>
       <!-- EDIT: Subheadline -->
-      <p class="subline" style="margin:16px auto 0;text-align:center;">Entenda o processo de projeto e execução que transforma a estrutura das obras.</p>
+      <p class="subline" style="margin:16px auto 0;text-align:center;">Entenda como a engenharia estrutural inteligente pode reduzir custos, otimizar materiais e acelerar a execução da sua obra.</p>
     </div>
     <div class="video-wrap" data-anim>
-      <video controls preload="metadata" playsinline>
-        <source src="vídeo-institucional-site.mp4" type="video/mp4">
-        Seu navegador não suporta reprodução de vídeo.
-      </video>
+      <iframe 
+        class="w-full h-full" 
+        src="https://www.youtube.com/embed/O3UgFp_Ihc8" 
+        title="Vídeo Institucional NucleoTec" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        style="position:absolute;inset:0;width:100%;height:100%;border:none;">
+      </iframe>
     </div>
   </div>
 </section>
